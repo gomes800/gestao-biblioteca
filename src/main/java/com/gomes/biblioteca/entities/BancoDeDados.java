@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 
 @Component
-public class test implements CommandLineRunner {
+public class BancoDeDados implements CommandLineRunner {
 
     @Autowired
     private DataSource dataSource;

@@ -8,6 +8,7 @@ import java.util.Objects;
 @Entity
 public class Livro {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -18,6 +19,9 @@ public class Livro {
 
     @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
     private List<Emprestimo> emprestimos;
+
+    public Livro(){
+    }
 
     public Livro(long id, String titulo, String autor, String isbn, Boolean disponibilidade) {
         this.id = id;
@@ -59,11 +63,11 @@ public class Livro {
         this.isbn = isbn;
     }
 
-    public Boolean getDisponibilidade() {
+    public boolean getDisponibilidade() {
         return disponibilidade;
     }
 
-    public void setDisponibilidade(Boolean disponibilidade) {
+    public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
 
