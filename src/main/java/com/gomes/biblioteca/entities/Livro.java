@@ -1,14 +1,23 @@
 package com.gomes.biblioteca.entities;
 
+import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Livro {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String titulo;
     private String autor;
     private String isbn;
     private boolean disponibilidade;
+
+    @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
+    private List<Emprestimo> emprestimos;
 
     public Livro(long id, String titulo, String autor, String isbn, Boolean disponibilidade) {
         this.id = id;

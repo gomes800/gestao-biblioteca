@@ -1,16 +1,27 @@
 package com.gomes.biblioteca.entities;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
 public class Emprestimo {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private LocalDateTime dataEmprestimo;
     private LocalDateTime dataDevolucao;
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "livro_id")
     private Livro livro;
 
     public Emprestimo(long id, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, String status, Usuario usuario, Livro livro) {
