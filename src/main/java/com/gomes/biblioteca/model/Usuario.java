@@ -1,5 +1,6 @@
 package com.gomes.biblioteca.model;
 
+import com.gomes.biblioteca.model.enums.TipoUsuario;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,17 +13,17 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String nome;
+    private String nomeUsuario;
     private String email;
     private String senha;
-    private String tipo;
+    private TipoUsuario tipo;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Emprestimo> emprestimos;
 
-    public Usuario(long id, String nome, String email, String senha, String tipo) {
+    public Usuario(long id, String nomeUsuario, String email, String senha, TipoUsuario tipo) {
         this.id = id;
-        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
         this.tipo = tipo;
@@ -36,12 +37,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public String getEmail() {
@@ -56,11 +57,15 @@ public class Usuario {
         return senha;
     }
 
-    public String getTipo() {
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public TipoUsuario getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
     }
 
