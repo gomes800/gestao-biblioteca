@@ -1,4 +1,4 @@
-package com.gomes.biblioteca.entities;
+package com.gomes.biblioteca.model;
 
 public class Administrador extends Usuario{
 
