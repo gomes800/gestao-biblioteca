@@ -2,7 +2,7 @@ package com.gomes.biblioteca.model;
 
 import com.gomes.biblioteca.model.enums.TipoUsuario;
 
-public class Administrador extends Usuario{
+public class Administrador extends User {
 
     private String cargo;
 

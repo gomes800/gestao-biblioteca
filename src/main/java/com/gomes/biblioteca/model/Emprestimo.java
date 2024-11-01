@@ -18,18 +18,18 @@ public class Emprestimo {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "livro_id")
     private Livro livro;
 
-    public Emprestimo(long id, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, String status, Usuario usuario, Livro livro) {
+    public Emprestimo(long id, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, String status, User user, Livro livro) {
         this.id = id;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.status = status;
-        this.usuario = usuario;
+        this.user = user;
         this.livro = livro;
     }
 
@@ -65,12 +65,12 @@ public class Emprestimo {
         this.status = status;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public User getUsuario() {
+        return user;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(User user) {
+        this.user = user;
     }
 
     public Livro getLivro() {

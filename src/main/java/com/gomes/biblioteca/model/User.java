@@ -3,29 +3,30 @@ package com.gomes.biblioteca.model;
 import com.gomes.biblioteca.model.enums.TipoUsuario;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Usuario {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String nomeUsuario;
+    private String Username;
     private String email;
-    private String senha;
+    private String password;
     private TipoUsuario tipo;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Emprestimo> emprestimos;
 
-    public Usuario(long id, String nomeUsuario, String email, String senha, TipoUsuario tipo) {
+    public User(long id, String Username, String email, String password, TipoUsuario tipo) {
         this.id = id;
-        this.nomeUsuario = nomeUsuario;
+        this.Username = Username;
         this.email = email;
-        this.senha = senha;
+        this.password = password;
         this.tipo = tipo;
     }
 
@@ -37,12 +38,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
+    public String getUsername() {
+        return Username;
     }
 
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
+    public void setUsername(String username) {
+        this.Username = username;
     }
 
     public String getEmail() {
@@ -53,12 +54,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public TipoUsuario getTipo() {
@@ -73,8 +74,8 @@ public class Usuario {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return id == usuario.id;
+        User user = (User) o;
+        return id == user.id;
     }
 
     @Override
