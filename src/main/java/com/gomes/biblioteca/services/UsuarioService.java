@@ -1,6 +1,6 @@
 package com.gomes.biblioteca.services;
 
-import com.gomes.biblioteca.model.User;
+import com.gomes.biblioteca.model.Usuario;
 import com.gomes.biblioteca.model.enums.TipoUsuario;
 import com.gomes.biblioteca.repositories.UsuarioRepository;
 import com.gomes.biblioteca.services.exceptions.DatabaseException;
@@ -19,23 +19,19 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
-    public List<User> findAll() {
+    public List<Usuario> findAll() {
         return repository.findAll();
     }
 
-    public User findById(Long id) {
-        Optional<User> obj = repository.findById(id);
+    public Usuario findById(Long id) {
+        Optional<Usuario> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public User registrarUsuario(User user) {
-        user.setTipo(TipoUsuario.CLIENTE);
-        return repository.save(user);
+    public Usuario registrarUsuario(Usuario usuario) {
+        return repository.save(usuario);
     }
 
-    public User buscarPorUsuario(String nomeUsuario) {
-        return repository.findByNomeUsuario(nomeUsuario).orElse(null);
-    }
 
     public void delete(Long id) {
         try {
@@ -49,9 +45,9 @@ public class UsuarioService {
         }
     }
 
-    public User update(Long id, User obj) {
+    public Usuario update(Long id, Usuario obj) {
         try {
-            User entity = repository.getReferenceById(id);
+            Usuario entity = repository.getReferenceById(id);
             updateData(entity, obj);
             return repository.save(entity);
         } catch (EntityNotFoundException e) {
@@ -59,8 +55,8 @@ public class UsuarioService {
         }
     }
 
-    private void updateData(User entity, User obj) {
-        entity.setUsername(obj.getUsername());
+    private void updateData(Usuario entity, Usuario obj) {
+        entity.setNomeUsuario(obj.getNomeUsuario());
         entity.setEmail(obj.getEmail());
     }
 }

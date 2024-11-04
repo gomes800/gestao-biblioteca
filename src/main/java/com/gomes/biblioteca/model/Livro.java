@@ -17,9 +17,6 @@ public class Livro {
     private String isbn;
     private boolean disponibilidade;
 
-    @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
-    private List<Emprestimo> emprestimos;
-
     public Livro(){
     }
 
