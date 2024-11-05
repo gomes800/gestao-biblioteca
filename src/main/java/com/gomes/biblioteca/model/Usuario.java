@@ -4,6 +4,7 @@ import com.gomes.biblioteca.model.enums.TipoUsuario;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +18,9 @@ public class Usuario implements Serializable {
     private String email;
     private String senha;
     private TipoUsuario tipo;
+
+    @OneToMany
+    private List<Emprestimo> emprestimos;
 
     public Usuario(){}
 

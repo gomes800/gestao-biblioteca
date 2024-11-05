@@ -17,6 +17,9 @@ public class Livro {
     private String isbn;
     private boolean disponibilidade;
 
+    @OneToMany(mappedBy = "livro")
+    private List<Emprestimo> emprestimos;
+
     public Livro(){
     }
 

@@ -5,7 +5,6 @@ import com.gomes.biblioteca.repositories.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,34 +12,34 @@ import java.util.Optional;
 public class LivroService {
 
     @Autowired
-    private LivroRepository livroRepository;
+    private LivroRepository repository;
 
     public Livro adicionarLivro(Livro livro) {
-        return livroRepository.save(livro);
+        return repository.save(livro);
     }
 
     public List<Livro> listaLivros() {
-        return livroRepository.findAll();
+        return repository.findAll();
     }
 
     public Optional<Livro> buscarLivroPorID(Long id) {
-        return livroRepository.findById(id);
+        return repository.findById(id);
     }
 
     public Optional<Livro> buscarLivroPorTitulo(String titulo) {
-        return livroRepository.findByTitulo(titulo);
+        return repository.findByTitulo(titulo);
     }
 
     public Livro atualizarLivro(Long id, Livro livroatualizado) {
         livroatualizado.setId(id);;
-        return livroRepository.save(livroatualizado);
+        return repository.save(livroatualizado);
     }
 
     public void deletarLivro(Long id) {
-        livroRepository.deleteById(id);
+        repository.deleteById(id);
     }
 
     public Livro salvarLivro(Livro livro) {
-        return livroRepository.save(livro);
+        return repository.save(livro);
     }
 }
