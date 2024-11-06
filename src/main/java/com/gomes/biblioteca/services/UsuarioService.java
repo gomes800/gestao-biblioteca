@@ -1,7 +1,6 @@
 package com.gomes.biblioteca.services;
 
 import com.gomes.biblioteca.model.Usuario;
-import com.gomes.biblioteca.model.enums.TipoUsuario;
 import com.gomes.biblioteca.repositories.UsuarioRepository;
 import com.gomes.biblioteca.services.exceptions.DatabaseException;
 import com.gomes.biblioteca.services.exceptions.ResourceNotFoundException;
@@ -28,7 +27,7 @@ public class UsuarioService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public Usuario registrarUsuario(Usuario usuario) {
+    public Usuario registrar(Usuario usuario) {
         return repository.save(usuario);
     }
 

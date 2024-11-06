@@ -2,6 +2,8 @@ package com.gomes.biblioteca.services;
 
 import com.gomes.biblioteca.model.Livro;
 import com.gomes.biblioteca.repositories.LivroRepository;
+import com.gomes.biblioteca.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,24 @@ public class LivroService {
         return repository.findByTitulo(titulo);
     }
 
-    public Livro atualizarLivro(Long id, Livro livroatualizado) {
-        livroatualizado.setId(id);;
-        return repository.save(livroatualizado);
+    public Livro update(Long id, Livro obj) {
+        try {
+            Livro entity = repository.getReferenceById(id);
+            updateData(entity, obj);
+            return repository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
-    public void deletarLivro(Long id) {
+    private void updateData(Livro entity, Livro obj) {
+        entity.setTitulo(obj.getTitulo());
+        entity.setAutor(obj.getAutor());
+        entity.setIsbn(obj.getIsbn());
+        entity.setDisponibilidade(obj.getDisponibilidade());
+    }
+
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 

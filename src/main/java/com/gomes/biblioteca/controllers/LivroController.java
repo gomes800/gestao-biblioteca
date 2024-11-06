@@ -15,40 +15,40 @@ import java.util.Optional;
 public class LivroController {
 
     @Autowired
-    private LivroService livroService;
+    private LivroService service;
 
     @GetMapping
-    public List<Livro> listarLivros() {
-        return livroService.listaLivros();
+    public List<Livro> listaLivros() {
+        return service.listaLivros();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Livro> buscarLivroPorId(@PathVariable Long id) {
-        Optional<Livro> livro = livroService.buscarLivroPorID(id);
+        Optional<Livro> livro = service.buscarLivroPorID(id);
         return livro.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/titulo/{titulo}")
     public ResponseEntity<Livro> buscarLivroPorTitulo(@PathVariable String titulo) {
-        Optional<Livro> livro = livroService.buscarLivroPorTitulo(titulo);
+        Optional<Livro> livro = service.buscarLivroPorTitulo(titulo);
         return livro.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/adicionar")
     public ResponseEntity<Livro> adcionarLivro(@RequestBody Livro livro) {
-        Livro novoLivro = livroService.adicionarLivro(livro);
+        Livro novoLivro = service.adicionarLivro(livro);
         return new ResponseEntity<>(novoLivro, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Livro> atualizarLivro(@PathVariable Long id, @RequestBody Livro livro) {
-        Livro livroAtualizado = livroService.atualizarLivro(id, livro);
+        Livro livroAtualizado = service.update(id, livro);
         return ResponseEntity.ok(livroAtualizado);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarLivro(@PathVariable Long id) {
-        livroService.deletarLivro(id);
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
