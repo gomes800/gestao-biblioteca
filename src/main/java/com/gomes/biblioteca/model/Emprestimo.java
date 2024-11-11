@@ -23,7 +23,7 @@ public class Emprestimo {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    Emprestimo(){}
+    public Emprestimo(){}
 
     public Emprestimo(Long id, LocalDate dataEmprestimo, LocalDate dataDevolucao, Boolean status) {
         this.id = id;
@@ -62,5 +62,21 @@ public class Emprestimo {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

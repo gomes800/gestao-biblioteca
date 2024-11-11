@@ -71,6 +71,10 @@ public class Livro {
         this.disponibilidade = disponibilidade;
     }
 
+    public boolean isDisponivel() {
+        return disponibilidade;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,27 +97,5 @@ public class Livro {
                 ", isbn='" + isbn + '\'' +
                 ", disponibilidade=" + disponibilidade +
                 '}';
-    }
-
-    public boolean emprestar() {
-        if (disponibilidade) {
-            disponibilidade = false;
-            System.out.println("Livro emprestado com sucesso.");
-            return true;
-        } else {
-            System.out.println("Livro não disponível para empréstimo.");
-            return false;
-        }
-    }
-
-    public boolean devolver() {
-        if (!disponibilidade) {
-            disponibilidade = true;
-            System.out.println("Livro devolvido com sucesso.");
-            return true;
-        } else {
-            System.out.println("Este livro não estava emprestado.");
-            return false;
-        }
     }
 }
